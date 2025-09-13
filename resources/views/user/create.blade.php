@@ -33,6 +33,30 @@
 
         </div>
 
+
+        <div class="flex flex-col gap-y-2">
+            <label for="jurusan_id" class="font-semibold text-md uppercase">jurusan</label>
+
+            <select 
+                name="jurusan_id" 
+                id="jurusan_id" 
+                class="select-form w-full border-1 rounded-sm border-gray-700 py-2 px-4 focus:ring-blue-500 outline-none focus:border-blue-900 @error('jurusan_id') border-red-500 text-red-500 @enderror" 
+                required
+            >
+                <option value="">Pilih Jurusan</option>
+                @foreach ($jurusans as $jurusan)
+                    <option value="{{ $jurusan->id }}" 
+                        {{ old('jurusan_id') == $jurusan->id ? 'selected' : '' }}>
+                        {{ $jurusan->nama_jurusan }}
+                    </option>
+                @endforeach
+            </select>
+
+            @error('jurusan_id') 
+                <p class="text-red-500 text-sm mt-1">{{$message}}</p>
+            @enderror
+        </div>
+
         <div class="flex flex-col gap-y-2">
             <label for="password" class="font-semibold text-md uppercase">password</label>
             <input type="password" id="password" name="password" class="w-full border-1 rounded-sm border-gray-700 py-2 px-4 focus:ring-blue-500 outline-none focus:border-blue-900 @error('password') border-red-500 text-red-500 @enderror" placeholder="Input your password">

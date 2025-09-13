@@ -32,7 +32,7 @@
                     Email
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Password
+                    Jurusan
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Photo
@@ -55,7 +55,7 @@
                     {{$user->email}}
                 </td>
                 <td class="px-6 py-4">
-                    {{$user->password}}
+                    {{ $user->jurusan->nama_jurusan }}
                 </td>
                 <td class="px-6 py-4">
                     <img src="{{ asset('storage/'. $user->photo) }}" class="w-10 h-10 rounded-full object-fill" alt="">

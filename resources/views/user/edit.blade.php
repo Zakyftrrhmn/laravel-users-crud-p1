@@ -34,6 +34,28 @@
 
         </div>
 
+
+         <div class="flex flex-col gap-y-2">
+            <label for="jurusan_id" class="font-semibold text-md uppercase">jurusan</label>
+
+            <select name="jurusan_id" id="jurusan_id" 
+                class="select-form w-full border-1 rounded-sm border-gray-700 py-2 px-4 focus:ring-blue-500 outline-none focus:border-blue-900" 
+                required>
+
+                <option value="">-- Pilih Jurusan --</option>
+                @foreach ($jurusans as $jurusan)
+                    <option value="{{ $jurusan->id }}" 
+                        {{ $user->jurusan_id == $jurusan->id ? 'selected' : '' }}>
+                        {{ $jurusan->nama_jurusan }}
+                    </option>
+                @endforeach
+            </select>
+
+            @error('jurusan_id') 
+                <p class="text-red-500 text-sm mt-1">{{$message}}</p>
+            @enderror
+        </div>
+        
         <div class="flex flex-col gap-y-2">
             <label for="password" class="font-semibold text-md uppercase">password
                 <span class="text-sm text-gray-500">(Abaikan Jika tidak ingin diubah)</span>

@@ -13,4 +13,9 @@ class Jurusan extends Model
         'nama_jurusan',
         'logo_jurusan',
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

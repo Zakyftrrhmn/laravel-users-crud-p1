@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'photo',
+        'jurusan_id',
     ];
 
     /**
@@ -45,5 +46,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class);
     }
 }
