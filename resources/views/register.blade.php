@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>register</title>
+     @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="p-10">
+
+    <form action="{{route('registerProses')}}" method="post" enctype="multipart/form-data" class="mt-10 flex flex-col gap-y-5">
+        @csrf
+
+        <div class="flex flex-col gap-y-2">
+            <label for="name" class="font-semibold text-md uppercase">name</label>
+            <input type="text" id="name" name="name" class="w-full border-1 rounded-sm border-gray-700 py-2 px-4 focus:ring-blue-500 outline-none focus:border-blue-900 @error('name') border-red-500 text-red-500 @enderror" placeholder="Input your name">
+
+            @error('name') 
+                <p class="text-red-500 text-sm mt-1">{{$message}}</p>
+            @enderror
+        </div>
+
+        <div class="flex flex-col gap-y-2">
+            <label for="email" class="font-semibold text-md uppercase">email</label>
+            <input type="email" id="email" name="email" class="w-full border-1 rounded-sm border-gray-700 py-2 px-4 focus:ring-blue-500 outline-none focus:border-blue-900 @error('email') border-red-500 text-red-500 @enderror" placeholder="Input your email">
+
+            @error('email') 
+                <p class="text-red-500 text-sm mt-1">{{$message}}</p>
+            @enderror
+
+        </div>
+
+
+        <div class="flex flex-col gap-y-2">
+            <label for="jurusan_id" class="font-semibold text-md uppercase">jurusan</label>
+
+            <select 
+                name="jurusan_id" 
+                id="jurusan_id" 
+                class="select-form w-full border-1 rounded-sm border-gray-700 py-2 px-4 focus:ring-blue-500 outline-none focus:border-blue-900 @error('jurusan_id') border-red-500 text-red-500 @enderror" 
+                required
+            >
+                <option value="">Pilih Jurusan</option>
+                @foreach ($jurusans as $jurusan)
+                    <option value="{{ $jurusan->id }}" 
+                        {{ old('jurusan_id') == $jurusan->id ? 'selected' : '' }}>
+                        {{ $jurusan->nama_jurusan }}
+                    </option>
+                @endforeach
+            </select>
+
+            @error('jurusan_id') 
+                <p class="text-red-500 text-sm mt-1">{{$message}}</p>
+            @enderror
+        </div>
+
+        <div class="flex flex-col gap-y-2">
+            <label for="password" class="font-semibold text-md uppercase">password</label>
+            <input type="password" id="password" name="password" class="w-full border-1 rounded-sm border-gray-700 py-2 px-4 focus:ring-blue-500 outline-none focus:border-blue-900 @error('password') border-red-500 text-red-500 @enderror" placeholder="Input your password">
+
+            @error('password') 
+                <p class="text-red-500 text-sm mt-1">{{$message}}</p>
+            @enderror
+        </div>
+
+        <div class="flex flex-col gap-y-2">
+            <label for="photo" class="font-semibold text-md uppercase">Photo</label>
+            <input 
+                type="file" 
+                id="photo" 
+                name="photo" 
+                class="w-full border-1 rounded-sm border-gray-700 py-2 px-4 focus:ring-blue-500 outline-none focus:border-blue-900 cursor-pointer @error('photo') border-red-500 text-red-500 @enderror"
+            >
+
+            @error('photo') 
+                <p class="text-red-500 text-sm mt-1">{{$message}}</p>
+            @enderror
+
+            <p class="mt-1 text-xs text-gray-500">PNG, JPG, or JPEG (max 2MB)</p>
+        </div>
+
+        <div class="flex flex-row gap-x-2">
+            <button type="submit">register</button>
+        </div>
+
+        
+    </form>
+
+
+</body>
+</html>

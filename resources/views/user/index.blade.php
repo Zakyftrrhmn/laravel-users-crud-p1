@@ -15,6 +15,11 @@
         </div>
     @endif
 
+    <form action="{{route('logout')}}" method="post">
+        @csrf
+        <button type="submit">logout</button>
+    </form>
+    
     <br>
     <br>
     <a href="{{route('user.create')}}" class="py-3 px-6 bg-blue-200 text-blue-800 rounded-full font-bold text-md uppercase">+ Add User</a>
